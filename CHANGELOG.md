@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-08-31 — v0.3
+
+### Added
+- Small standalone always-on-top Neptun status GUI (`neptun_status_gui.py`).
+- 30-second availability probes in GUI mode.
+- Displays current state, time since the state began, elapsed duration, and last probe time.
+- Silent Windows launcher (`start_neptun_gui.vbs`) using `pyw`, so no PowerShell/console window is required.
+- GUI mode writes to the existing probe and availability logs.
+
+### Isolation
+- No changes were made to the local GPU Helper project. The Neptun panel is a separate process and remains entirely inside `neptuncheck_me`.
+- No credentials are submitted.
+
 ## 2026-08-31 — v0.2
 
 ### Added
