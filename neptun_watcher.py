@@ -6,7 +6,8 @@ import urllib.error
 import webbrowser
 from pathlib import Path
 
-DEFAULT_URL = "https://neptun.uni-miskolc.hu/"
+# Official University of Miskolc student Neptun endpoint linked by the university Neptun page.
+DEFAULT_URL = "https://neptunweb1.uni-miskolc.hu/"
 
 
 def now():
@@ -18,7 +19,7 @@ def stamp(value=None):
 
 
 def check(url, timeout):
-    req = urllib.request.Request(url, headers={"User-Agent": "NeptunWatcher/0.2 availability-monitor"})
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 NeptunWatcher/0.3"})
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
             body = r.read(32768).decode("utf-8", errors="ignore").lower()
@@ -63,7 +64,7 @@ def main():
     last = None
     down_since = None
     opened = False
-    print(f"Neptun Watcher v0.2 | {args.url} | interval={args.interval}s")
+    print(f"Neptun Watcher v0.3 | {args.url} | interval={args.interval}s")
     print(f"Probe log: {log_path} | Availability history: {events_path}")
     print("No username/password is stored or submitted. Ctrl+C to stop.")
 
@@ -101,7 +102,7 @@ def main():
             if args.open_on_up and reachable and last not in (None, "UP") and not opened:
                 webbrowser.open(args.url)
                 opened = True
-                print("Service is reachable again; opened the login page. Login remains manual.")
+                print("Service is reachable again; opened the student Neptun page. Login remains manual.")
             if not reachable:
                 opened = False
             last = state
